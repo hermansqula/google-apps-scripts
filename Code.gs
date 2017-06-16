@@ -25,12 +25,13 @@ function getAttachmentsFromStarredThreads() {
     
     // iterate over messages
     for (var j = 0; j < messages.length; j++) {
+      var thesender = messages[j].getFrom();
       var attachments = messages[j].getAttachments();
       
       // iterate over attachments per message
       for (var k = 0; k < attachments.length; k++) {
         var newAttachment = attachments[k].copyBlob();
-        newAttachment.setName(attachmentNumber++ + "_" + newAttachment.getName())
+        newAttachment.setName(thesender + " - " + attachmentNumber++ + "_" + newAttachment.getName())
         blobs.push(newAttachment);
       }
     }
